@@ -208,10 +208,10 @@
     "@babel/helper-validator-identifier" "^7.14.5"
     to-fast-properties "^2.0.0"
 
-"@cucumber/compatibility-kit@7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@cucumber/compatibility-kit/-/compatibility-kit-7.0.0.tgz#53ad96f2aab44bab63394f6bfd3668156ec13113"
-  integrity sha512-RmRaednTus8Pl1rjOqdNeXp2TUWCfkQhvP0Eq9DW5gwubnFgJlKd9kHyY+VO8/te+Vv8a9YAyXeZ0SJy7QnRLA==
+"@cucumber/compatibility-kit@7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@cucumber/compatibility-kit/-/compatibility-kit-7.1.0.tgz#09333912bf7a7392fb6b5a8edf23f3fe67001cb4"
+  integrity sha512-9XK8Fbbkg6Dpbvb96KpRozGtMXbfy266jV+bh95/X697eXDoOlTe5OBcZjzpti3l40Ksu2NpF0fE0YvXMPixVw==
 
 "@cucumber/create-meta@^5.0.0":
   version "5.0.0"
