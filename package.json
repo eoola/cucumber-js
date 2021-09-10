@@ -192,6 +192,7 @@
     "progress": "^2.0.3",
     "resolve": "^1.19.0",
     "resolve-pkg": "^2.0.0",
+    "source-map": "^0.6.1",
     "stack-chain": "^2.0.0",
     "string-argv": "^0.3.1",
     "tmp": "^0.2.1",
