@@ -15,37 +15,42 @@ export function getDefinitionLineAndUri(
   let line: number
   let uri: string
   try {
+    const origPrepareStackTrace = Error.prepareStackTrace
 
-    var origPrepareStackTrace = Error.prepareStackTrace
-
-    Error.prepareStackTrace = function(_, stack) {
+    Error.prepareStackTrace = function (_, stack) {
       return stack
     }
 
-    var err = new Error()
+    const err = new Error()
 
-    var stack = err.stack as unknown as Array<CallSite>
+    const stack = err.stack as unknown as CallSite[]
 
-    var filename = stack[1].getFileName()
+    const filename = stack[1].getFileName()
 
-    var source = fs.readFileSync(filename, 'utf8')
+    const source = fs.readFileSync(filename, 'utf8')
 
-    var sourceMappingUrlRegExp = /\/\/[#@] ?sourceMappingURL=([^\s'"]+)\s*$/mg;
-    let lastSourceMappingUrl;
-    let matchSourceMappingUrl;
+    const sourceMappingUrlRegExp = /\/\/[#@] ?sourceMappingURL=([^\s'"]+)\s*$/gm
+    let lastSourceMappingUrl
+    let matchSourceMappingUrl
 
-    while(matchSourceMappingUrl = sourceMappingUrlRegExp.exec(source)) {
-      lastSourceMappingUrl = matchSourceMappingUrl[1];
+    while ((matchSourceMappingUrl = sourceMappingUrlRegExp.exec(source))) {
+      lastSourceMappingUrl = matchSourceMappingUrl[1]
     }
 
+    console.log(lastSourceMappingUrl)
+
     if (lastSourceMappingUrl) {
-      let sourceMappingUrl = lastSourceMappingUrl
-      let isDataUrl = sourceMappingUrl.substr(0,5) === 'data:';
-      let defaultSourceRoot = filename.substring(0, filename.lastIndexOf('/') + 1);
+      const sourceMappingUrl = lastSourceMappingUrl
+      const isDataUrl = sourceMappingUrl.substr(0, 5) === 'data:'
+      const defaultSourceRoot = filename.substring(
+        0,
+        filename.lastIndexOf('/') + 1
+      )
 
-      let sourceMap = fs.readFileSync(sourceMappingUrl, 'utf8')
+      const sourceMap = fs.readFileSync(sourceMappingUrl, 'utf8')
+      console.log(sourceMap)
 
-      //let sourceConsumer = new SourceMapConsumer(sourceMap);
+      // let sourceConsumer = new SourceMapConsumer(sourceMap);
     }
 
     console.log(stack)
@@ -82,5 +87,3 @@ export function getDefinitionLineAndUri(
     uri: valueOrDefault(uri, 'unknown'),
   }
 }
-
-
